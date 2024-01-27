@@ -3,7 +3,7 @@ import { GetProductsParams } from "../types/products";
 
 export class ProductsResource {
   async getAll(params: GetProductsParams = {}) {
-    const url = new NextURL(`${process.env.VERCEL_URL}/api/products`);
+    const url = new NextURL(`${process.env.NEXT_PUBLIC_SITE_URL}/api/products`);
 
     for (const key in params) {
       if (Object.prototype.hasOwnProperty.call(params, key)) {
@@ -17,7 +17,7 @@ export class ProductsResource {
   }
 
   async getOne(id: number) {
-    const res = await fetch(`${process.env.VERCEL_URL}/api/products/${id}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/products/${id}`);
     return res.json();
   }
 }

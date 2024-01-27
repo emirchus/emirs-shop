@@ -4,7 +4,7 @@ import React from "react";
 
 export const Header = async () => {
   const categories = await api.categories.getAll();
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <div className="w-full">
