@@ -9,10 +9,6 @@ export const Header = async () => {
   return (
     <div className="w-full">
       <Image src="/logo.svg" alt="Logo" width={80} height={80} />
-
-      {categories.map((category) => {
-        return <p>{category.name}</p>;
-      })}
     </div>
   );
 };
