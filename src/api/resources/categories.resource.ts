@@ -4,8 +4,14 @@ import { BASE_URL } from "@/lib/config";
 
 export class CategoriesResource {
   async getAll(): Promise<Category[]> {
-    const res = await fetch(`${BASE_URL}/api/categories`);
-    return res.json();
+    console.log("BASE_URL: ", BASE_URL);
+    try {
+      const res = await fetch(`${BASE_URL}/api/categories`);
+      return res.json();
+    } catch (error) {
+      console.log("error: ", error);
+      return [];
+    }
   }
 
   async getOne(id: number): Promise<Category> {
@@ -14,9 +20,7 @@ export class CategoriesResource {
   }
 
   async getProducts(id: number): Promise<Product[]> {
-    const res = await fetch(
-      `${BASE_URL}/api/categories/${id}/products`
-    );
+    const res = await fetch(`${BASE_URL}/api/categories/${id}/products`);
     return res.json();
   }
 }
