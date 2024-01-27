@@ -4,7 +4,4 @@ export const fontSans = FontSans({
   variable: "--font-sans",
 });
 
-export const BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? `https://${process.env.VERCEL_URL}`
-    : `http://${process.env.VERCEL_URL}`;
+export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
