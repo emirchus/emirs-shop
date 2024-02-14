@@ -3,6 +3,7 @@ import { fetchProducts } from '@/app/action';
 import { ProductsHome } from '@/components/products-home';
 import { SearchInput } from '@/components/search-input';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 interface Props {
   searchParams?: {
@@ -44,7 +45,9 @@ export default async function SearchPage({ searchParams }: Props) {
 
       <section className='mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {products}
-        <ProductsHome key={query} />
+        <Suspense key={JSON.stringify(searchParams)}>
+          <ProductsHome key={query} />
+        </Suspense>
       </section>
     </div>
   );
