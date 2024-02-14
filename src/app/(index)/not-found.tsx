@@ -23,8 +23,8 @@ export default async function NotFound() {
           Podrías probar con estos productos
         </h2>
         <div className='flex flex-row mt-8'>
-          {products.map(product => (
-            <ProductItem key={product.id} product={product} />
+          {products.map((product, index) => (
+            <ProductItem key={product.id} product={product} index={index} />
           ))}
         </div>
       </div>
