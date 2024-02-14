@@ -37,8 +37,9 @@ export default async function SearchPage({ searchParams }: Props) {
   );
   return (
     <div className='flex min-h-screen w-full flex-col items-center justify-start'>
-      <SearchInput visible className='mt-8 w-full' />
-
+      <Suspense>
+        <SearchInput visible className='mt-8 w-full' />
+      </Suspense>
       {query && (
         <h1 className='mt-8 text-center text-4xl font-semibold'>Search results for {query}</h1>
       )}

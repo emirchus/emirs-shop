@@ -7,7 +7,7 @@ import { MessageCirclePlusIcon, ShieldCheckIcon, TrophyIcon, TruckIcon } from 'l
 import { Suspense } from 'react';
 import { fetchProducts } from '../action';
 
-export default function HomePage({ searchParams }: { searchParams: URLSearchParams }) {
+export default function HomePage() {
   return (
     <div className='flex h-full w-full flex-col'>
       <Suspense fallback={<Skeleton className='mx-auto my-8 h-[50vh] w-[80%]' />}>
@@ -56,7 +56,7 @@ export default function HomePage({ searchParams }: { searchParams: URLSearchPara
       <section className='my-4 flex w-full flex-col items-center justify-center space-y-4'>
         <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {fetchProducts(1, null, null)}
-          <Suspense key={JSON.stringify(searchParams)}>
+          <Suspense>
             <ProductsHome />
           </Suspense>
         </div>

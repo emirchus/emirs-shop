@@ -31,14 +31,16 @@ const CategoriesFallback = () => (
 
 export const Header = () => {
   return (
-    <div className='grid-cols-3 h-30 grid  w-full grid-rows-2 border-b-2 border-border  px-5 shadow-sm'>
+    <div className='h-30 grid w-full  grid-cols-3 grid-rows-2 border-b-2 border-border  px-5 shadow-sm'>
       <div className='col-start-1 flex items-center justify-center'>
         <Link href='/'>
           <Image src='/logo.svg' alt='Logo' width={60} height={60} priority />
         </Link>
       </div>
       <div className='col-start-3 row-span-1 flex flex-row items-center justify-end'>
-        <SearchInput />
+        <Suspense>
+          <SearchInput />
+        </Suspense>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant={'outline'}>
