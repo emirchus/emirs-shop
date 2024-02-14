@@ -12,7 +12,6 @@ import { ItemCarousel } from '../item-carousel/item-carousel';
 
 export const BestSellers = async () => {
   const bestSellers = await api.products.getNewReleased();
-  console.log(bestSellers);
   return (
     <div className='my-4 flex flex-col items-center justify-center'>
       <h3 className='mb-4 text-2xl font-bold'>NEW RELEASED</h3>
