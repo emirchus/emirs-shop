@@ -4,7 +4,7 @@ import { FetchProducts, fetchProducts } from '@/app/action';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 let page = 2;
 
@@ -13,11 +13,14 @@ export const ProductsHome = () => {
   const [products, setProducts] = useState<FetchProducts>([]);
   const [canLoadMore, setCanLoadMore] = useState(true);
 
-  const searchParams = useSearchParams();
+  const searchParams = useParams<{
+    category: string;
+    query: string;
+  }>();
 
-  const categoryId = searchParams.get('category');
+  const categoryId = searchParams.category;
 
-  const title = searchParams.get('query');
+  const title = searchParams.query;
 
   useEffect(() => {
     if (inView && canLoadMore) {
