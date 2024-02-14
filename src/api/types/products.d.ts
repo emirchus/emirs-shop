@@ -12,3 +12,6 @@ export type GetProductsParams = {
       price_min?: number | null;
     }
 );
+export type GetBestSellersParams = {
+  categoryId?: number | null;
+};

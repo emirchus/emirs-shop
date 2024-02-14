@@ -1,26 +1,39 @@
-import { Category } from "@/interfaces/category";
-import { Product } from "@/interfaces/product";
-import { BASE_URL } from "@/lib/config";
+import { Category } from '@/interfaces/category';
+import { Product } from '@/interfaces/product';
+import { BASE_URL } from '@/lib/config';
 
 export class CategoriesResource {
   async getAll(): Promise<Category[]> {
-    console.log("BASE_URL: ", BASE_URL);
     try {
       const res = await fetch(`${BASE_URL}/api/categories`);
-      return res.json();
+      const categories = await res.json();
+
+      const uniqueCategories = categories.filter(
+        (category: Category, index: number, self: Category[]) =>
+          index === self.findIndex(c => c.name === category.name)
+      );
+
+      return uniqueCategories;
     } catch (error) {
-      console.log("error: ", error);
       return [];
     }
   }
 
-  async getOne(id: number): Promise<Category> {
-    const res = await fetch(`${BASE_URL}/api/categories/${id}`);
-    return res.json();
+  async getOne(id: number): Promise<Category | null> {
+    try {
+      const res = await fetch(`${BASE_URL}/api/categories/${id}`);
+      return res.json();
+    } catch (error) {
+      return null;
+    }
   }
 
   async getProducts(id: number): Promise<Product[]> {
-    const res = await fetch(`${BASE_URL}/api/categories/${id}/products`);
-    return res.json();
+    try {
+      const res = await fetch(`${BASE_URL}/api/categories/${id}/products`);
+      return res.json();
+    } catch (error) {
+      return [];
+    }
   }
 }

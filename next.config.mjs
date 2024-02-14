@@ -3,11 +3,18 @@ const nextConfig = {
   rewrites: async () => {
     return [
       {
-        source: "/api/:path*",
-        destination: "https://api.escuelajs.co/api/v1/:path*",
-      },
+        source: '/api/:path*',
+        destination: 'https://api.escuelajs.co/api/v1/:path*'
+      }
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'i.imgur.com'
+      }
+    ]
+  }
 };
 
 export default nextConfig;
