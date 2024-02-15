@@ -14,7 +14,7 @@ const nextConfig = {
                 value: 'admin.katuhc.com',
             },
         ],
-        destination: '/admin/:path*',
+        destination: '/dashboard/:path*',
     },
     ];
   },
