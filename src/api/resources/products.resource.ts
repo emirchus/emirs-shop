@@ -20,7 +20,13 @@ export class ProductsResource {
           url.searchParams.append(key, value);
         }
       }
-      const res = await (await fetch(url)).json();
+      const res = await (
+        await fetch(url, {
+          next: {
+            revalidate: 60
+          }
+        })
+      ).json();
       return res;
     } catch (error) {
       return [];

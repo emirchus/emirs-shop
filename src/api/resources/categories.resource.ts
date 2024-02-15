@@ -5,7 +5,11 @@ import { BASE_URL } from '@/lib/config';
 export class CategoriesResource {
   async getAll(): Promise<Category[]> {
     try {
-      const res = await fetch(`${BASE_URL}/api/categories`);
+      const res = await fetch(`${BASE_URL}/api/categories`, {
+        next: {
+          revalidate: 60
+        }
+      });
       const categories = await res.json();
 
       const uniqueCategories = categories.filter(

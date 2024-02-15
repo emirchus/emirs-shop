@@ -6,7 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { AspectRatio } from '../ui/aspect-ratio';
 import useMediaQuery from '@/hooks/use-media-query';
-
 interface Props {
   product: Product;
 }
@@ -45,7 +44,7 @@ export const ItemCarousel = ({ product }: Props) => {
             <div className={styles.itemInfo}>
               <h2 className='text-lg font-semibold'>{product.title}</h2>
               <p className='text-sm font-medium text-foreground '>${product.price}</p>
-              <p className='line-clamp-3 text-sm font-medium text-muted-foreground mt-auto'>
+              <p className='mt-auto line-clamp-3 text-sm font-medium text-muted-foreground'>
                 {product.description}
               </p>
             </div>

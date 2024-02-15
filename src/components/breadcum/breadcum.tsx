@@ -15,7 +15,7 @@ export const Breadcum = ({ paths }: Props) => {
       {paths.map((path, index) => (
         <div key={path.href} className='flex flex-row items-center justify-start'>
           <Link
-            className={cn('hover:underline', {
+            className={cn('hover:underline line-clamp-1', {
               'text-accent-foreground': index === paths.length - 1
             })}
             href={path.href}
