@@ -11,7 +11,7 @@ const nextConfig = {
         has: [
             {
                 type: 'host',
-                value: 'admin',
+                value: 'admin.katuhc.com',
             },
         ],
         destination: '/admin/:path*',
