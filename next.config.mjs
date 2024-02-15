@@ -11,7 +11,7 @@ const nextConfig = {
         has: [
             {
                 type: 'host',
-                value: 'admin.emirs-shop.vercel.app',
+                value: 'admin',
             },
         ],
         destination: '/admin/:path*',
