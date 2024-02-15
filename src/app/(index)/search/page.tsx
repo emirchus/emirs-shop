@@ -30,11 +30,13 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function SearchPage({ searchParams }: Props) {
   const { query, category } = searchParams || {};
+
   const products = await fetchProducts(
     0,
     query,
     category !== null && category !== undefined ? parseInt(category) : null
   );
+
   return (
     <div className='flex min-h-screen w-full flex-col items-center justify-start'>
       <Suspense>
@@ -45,11 +47,30 @@ export default async function SearchPage({ searchParams }: Props) {
       )}
 
       <section className='mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-        {products}
-        <Suspense key={JSON.stringify(searchParams)}>
-          <ProductsHome key={query} />
-        </Suspense>
+        {!!products.length && (
+          <>
+            {products}
+            <Suspense key={JSON.stringify(searchParams)}>
+              <ProductsHome
+                key={query}
+                title={query}
+                category={category !== null && category !== undefined ? parseInt(category) : null}
+              />
+            </Suspense>
+          </>
+        )}
       </section>
+      {!products.length && (
+        <>
+          <h1 className='mx-auto text-center text-2xl font-semibold'>No products found</h1>
+          <h3 className='mx-auto text-center text-lg font-semibold'>
+            Try searching for something else
+          </h3>
+          <section className='mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+            <ProductsHome />
+          </section>
+        </>
+      )}
     </div>
   );
 }
