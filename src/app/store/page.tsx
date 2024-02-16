@@ -5,7 +5,6 @@ import { ProductsHome } from '@/components/products-home';
 import { Skeleton } from '@/components/ui/skeleton';
 import { MessageCirclePlusIcon, ShieldCheckIcon, TrophyIcon, TruckIcon } from 'lucide-react';
 import { Suspense } from 'react';
-import { fetchProducts } from '../action';
 
 export default function HomePage() {
   return (
@@ -54,12 +53,7 @@ export default function HomePage() {
       <hr className='my-8' />
 
       <section className='my-4 flex w-full flex-col items-center justify-center space-y-4'>
-        <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-          {fetchProducts(1, null, null)}
-          <Suspense>
-            <ProductsHome />
-          </Suspense>
-        </div>
+        <ProductsHome />
       </section>
     </div>
   );

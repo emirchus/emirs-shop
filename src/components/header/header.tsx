@@ -1,25 +1,12 @@
 import Image from 'next/image';
 import React, { Suspense } from 'react';
 import Link from 'next/link';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger
-} from '../ui/dropdown-menu';
-import { Button } from '../ui/button';
 import { CategoriesNavbar } from '../categories-navbar';
 import { SearchInput } from '../search-input';
 import { Skeleton } from '../ui/skeleton';
-import { MenuIcon } from 'lucide-react';
+import { useSession } from '@/hooks/use-session';
+import { UserDropdown } from '../user-dropdown/user-dropdown';
+import { SignInButton } from '../sign-in';
 
 const CategoriesFallback = () => (
   <div className='relative z-10 flex h-6 w-full flex-1 flex-row items-center justify-center space-x-5'>
@@ -29,7 +16,9 @@ const CategoriesFallback = () => (
   </div>
 );
 
-export const Header = () => {
+export const Header = async () => {
+  const session = await useSession();
+
   return (
     <div className='h-30 grid w-full  grid-cols-3 grid-rows-2 border-b-2 border-border  px-5 shadow-sm'>
       <div className='col-start-1 flex items-center justify-center'>
@@ -41,63 +30,7 @@ export const Header = () => {
         <Suspense>
           <SearchInput />
         </Suspense>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant={'outline'}>
-              <MenuIcon />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className='mr-4 w-56'>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                Profile
-                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                Billing
-                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                Settings
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                Keyboard shortcuts
-                <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                <DropdownMenuPortal>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem>Email</DropdownMenuItem>
-                    <DropdownMenuItem>Message</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>More...</DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuPortal>
-              </DropdownMenuSub>
-              <DropdownMenuItem>
-                New Team
-                <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>GitHub</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
-            <DropdownMenuItem disabled>API</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              Log out
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {session.access_token ? <UserDropdown user={session.user!} /> : <SignInButton />}
       </div>
       <div className='col-span-3 row-start-2 flex items-center justify-center'>
         <Suspense fallback={<CategoriesFallback />}>

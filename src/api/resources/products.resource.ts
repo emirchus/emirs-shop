@@ -43,7 +43,11 @@ export class ProductsResource {
         }
       }
 
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        next: {
+          revalidate: 60
+        }
+      });
       return res.json();
     } catch (error) {
       return [];
@@ -52,7 +56,11 @@ export class ProductsResource {
   async getRecommendations(): Promise<Product[]> {
     try {
       const url = new NextURL(`${BASE_URL}/api/product/recommendations`);
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        next: {
+          revalidate: 60
+        }
+      });
       return res.json();
     } catch (error) {
       return [];

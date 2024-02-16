@@ -1,8 +1,7 @@
-export const APPS : {
+export const APPS: {
   subdomain: string;
   path: string;
-}[]
- = [
+}[] = [
   {
     subdomain: 'www',
     path: '/store/'
@@ -15,11 +14,10 @@ export const APPS : {
 
 export function getSubdomain(location: string) {
   const locationSegments = location.split('.');
-
   let sliceTill = -2;
 
   // Path localhost
-  const isLocalhost = locationSegments.slice(-1)[0] === 'localhost';
+  const isLocalhost = locationSegments.slice(-1)[0] === 'localhost:3000';
 
   if (isLocalhost) sliceTill = -1;
 

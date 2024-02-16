@@ -25,7 +25,7 @@ export const SocialIcon = ({ href, icon, label }: SocialIconProps) => {
 
 export const Footer = () => {
   return (
-    <footer className='grid w-full gap-4 border-t-2 border-border p-5 md:grid-cols-3 md:grid-rows-2'>
+    <footer className='grid w-full gap-4 border-t-2 border-border p-5 md:grid-cols-3 md:grid-rows-2 md:h-20'>
       <div className='flex items-center justify-center md:col-span-1 md:row-span-2 flex-col'>
         <h3 className='font-semibold'>Contact Us!</h3>
         <ul className='flex flex-row flex-wrap justify-center space-x-4 md:justify-start'>

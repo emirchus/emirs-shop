@@ -3,7 +3,6 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { fontSans } from '@/lib/config';
 import { ThemeProvider } from '@/providers';
-import React from 'react';
 
 export const metadata: Metadata = {
   title: "Emir's Shop",

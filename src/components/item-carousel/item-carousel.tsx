@@ -18,7 +18,8 @@ export const ItemCarousel = ({ product }: Props) => {
 
     if (!currentSrc.includes('imgur')) return;
 
-    return currentSrc;
+    // eslint-disable-next-line no-useless-escape
+    return currentSrc.replaceAll(/[\[\]\"]/g, '');
   }, [product.images]);
 
   return (
