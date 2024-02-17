@@ -18,6 +18,6 @@ export const sessionOptions: SessionOptions = {
     httpOnly: true,
     sameSite: 'lax',
     path: '/',
-    domain: hostName
+    domain: hostName === 'localhost' ? null :  hostName // add a . in front so that subdomains are included
   }
 };
