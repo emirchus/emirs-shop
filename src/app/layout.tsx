@@ -16,9 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <ThemeProvider>
+        <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+          {children}
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

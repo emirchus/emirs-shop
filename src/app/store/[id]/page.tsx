@@ -106,10 +106,10 @@ export default async function ProductPage({ params: { id } }: Props) {
               <Share2Icon />
             </Button>
           </div>
-          <h2 className='text-5xl font-bold text-primary-foreground'>{product.title}</h2>
+          <h2 className='text-5xl font-bold text-foreground'>{product.title}</h2>
           <h3 className='text-2xl font-semibold text-muted-foreground'>${product.price}</h3>
           <hr className='my-8 w-full bg-muted' />
-          <h4 className='text-xl font-semibold text-primary-foreground'>Description</h4>
+          <h4 className='text-xl font-semibold text-foreground/75'>Description</h4>
           <p className='text-lg font-normal text-secondary-foreground'>{product.description}</p>
         </div>
       </div>

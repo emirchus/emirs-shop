@@ -11,8 +11,6 @@ export const defaultSession: SessionData = {};
 
 const hostName = new URL(BASE_URL).hostname;
 
-console.log(hostName)
-
 export const sessionOptions: SessionOptions = {
   password: 'complex_password_at_least_32_characters_long',
   cookieName: 'user-session',
@@ -20,6 +18,6 @@ export const sessionOptions: SessionOptions = {
     httpOnly: true,
     sameSite: 'lax',
     path: '/',
-    domain: hostName == 'localhost' ? `.${hostName}` : '.' + hostName // add a . in front so that subdomains are included
+    domain: hostName
   }
 };

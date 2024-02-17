@@ -23,6 +23,15 @@ import {
 import { logout } from '@/app/action';
 import Link from 'next/link';
 import { BASE_URL } from '@/lib';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '../ui/select';
+import { useTheme } from 'next-themes';
 
 interface Props {
   user: User;
@@ -36,6 +45,8 @@ export const UserDropdown = ({ user }: Props) => {
 
     return url.toString();
   };
+
+  const { setTheme, theme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -91,6 +102,22 @@ export const UserDropdown = ({ user }: Props) => {
               <Settings size={16} />
               <span className='ml-2'>Settings</span>
             </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <div className='flex flex-row items-center justify-between'>
+              <p className='mr-5'>Theme: </p>
+              <Select defaultValue={theme} onValueChange={setTheme}>
+                <SelectTrigger className='w-full'>
+                  <SelectValue placeholder='Mode' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value='dark'>Dark</SelectItem>
+                    <SelectItem value='light'>Light</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
