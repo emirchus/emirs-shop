@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loading } from '@/components/loading';
 
-let page = 0;
+let page = 1;
 
 interface Props {
   title?: string | null;
@@ -19,8 +19,8 @@ export const ProductsHome = ({ title, category }: Props) => {
   const [canLoadMore, setCanLoadMore] = useState(true);
 
   useEffect(() => {
-    if (inView && canLoadMore) {
-      fetchProducts(page, title as string, category).then(res => {
+    if ((inView || products.length == 0) && canLoadMore) {
+      fetchProducts(page === 1 ? 0 : page, title as string, category).then(res => {
         setProducts([...products, ...res]);
         if (res.length < 10) setCanLoadMore(false);
         page++;
@@ -31,7 +31,7 @@ export const ProductsHome = ({ title, category }: Props) => {
   return (
     <>
       <Suspense>
-        <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        <div className='mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {products}
         </div>
       </Suspense>

@@ -14,14 +14,16 @@ export default async function middleware(req: NextRequest) {
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const session = await useSession();
-
+  console.log(subdomain);
   // rewrites for store page
-  if (subdomain === '' || subdomain === 'www') {
+  if (subdomain !== 'dashboard') {
     return NextResponse.rewrite(new URL(`/store${path === '/' ? '' : path}`, req.url));
   }
 
   // rewrites for admin page
   if (subdomain === 'dashboard') {
+    console.log(session.access_token)
+
     if (!session.access_token || session.user!.role === 'customer') {
       return NextResponse.redirect(BASE_URL);
     }

@@ -54,7 +54,7 @@ export const UserDropdown = ({ user }: Props) => {
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          {user.role === 'customer' && (
+          {user.role === 'admin' && (
             <DropdownMenuItem asChild>
               <a
                 href={dashboardURL()}

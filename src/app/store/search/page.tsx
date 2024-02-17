@@ -58,9 +58,7 @@ export default async function SearchPage({ searchParams }: Props) {
             <h3 className='mx-auto text-center text-lg font-semibold'>
               Try searching for something else
             </h3>
-            <section className='mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-              <ProductsHome />
-            </section>
+            <ProductsHome />
           </>
         )}
       </div>
