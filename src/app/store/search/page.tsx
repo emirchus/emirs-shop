@@ -1,7 +1,6 @@
 import { api } from '@/api';
 import { fetchProducts } from '@/app/action';
-import { ProductsHome } from '@/components/products-home';
-import { SearchInput } from '@/components/search-input';
+import { ProductsHome, SearchInput } from '@/components/store';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 

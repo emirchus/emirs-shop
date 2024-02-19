@@ -1,8 +1,5 @@
-import { BestSellers } from '@/components/best-sellers/best-sellers';
-import { CategoriesHome } from '@/components/categories-home';
-import { HomeFeature } from '@/components/home-feature';
-import { ProductsHome } from '@/components/products-home';
-import { Skeleton } from '@/components/ui/skeleton';
+import { BestSellers, HomeFeature, CategoriesHome, ProductsHome } from '@/components/store';
+import { Skeleton } from '@/components/ui';
 import { MessageCirclePlusIcon, ShieldCheckIcon, TrophyIcon, TruckIcon } from 'lucide-react';
 import { Suspense } from 'react';
 
@@ -52,7 +49,7 @@ export default function HomePage() {
 
       <hr className='my-8' />
 
-      <section className='my-4 flex w-full flex-col items-center justify-center space-y-4'>
+      <section className='my-4 flex w-full flex-col items-center justify-center space-y-4 px-4'>
         <ProductsHome />
       </section>
     </div>

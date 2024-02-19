@@ -1,5 +1,10 @@
 import { NextURL } from 'next/dist/server/web/next-url';
-import { GetBestSellersParams, GetProductsParams } from '../types/products';
+import {
+  CreateProductPayload,
+  GetBestSellersParams,
+  GetProductsParams,
+  UpdateProductPayload
+} from '../types/products';
 import { BASE_URL } from '@/lib/config';
 import { Product } from '@/interfaces/product';
 
@@ -76,6 +81,55 @@ export class ProductsResource {
       return null;
     } catch (error) {
       return null;
+    }
+  }
+
+  async createProduct(payload: CreateProductPayload): Promise<Product | null> {
+    try {
+      const res = await fetch(`${BASE_URL}/api/products`, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const json = await res.json();
+      if (json.id) {
+        return json;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async updateProduct(id: number, payload: UpdateProductPayload): Promise<Product | null> {
+    try {
+      const res = await fetch(`${BASE_URL}/api/products/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const json = await res.json();
+      if (json.id) {
+        return json;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  }
+  async deleteProduct(id: number): Promise<boolean> {
+    try {
+      const res = await fetch(`${BASE_URL}/api/products/${id}`, {
+        method: 'DELETE'
+      });
+      const data = res.json();
+      return Boolean(data);
+    } catch (error) {
+      return false;
     }
   }
 }

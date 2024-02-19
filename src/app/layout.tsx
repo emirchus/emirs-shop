@@ -1,13 +1,7 @@
-import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { fontSans } from '@/lib/config';
 import { ThemeProvider } from '@/providers';
-
-export const metadata: Metadata = {
-  title: "Emir's Shop",
-  description: 'A shop made with Next.js and TailwindCSS'
-};
 
 export default function RootLayout({
   children

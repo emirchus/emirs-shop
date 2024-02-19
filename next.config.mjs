@@ -13,6 +13,9 @@ const nextConfig = {
     remotePatterns: [
       {
         hostname: 'i.imgur.com'
+      },
+      {
+        hostname: 'via.placeholder.com'
       }
     ]
   }

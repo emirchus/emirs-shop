@@ -21,7 +21,10 @@ export default async function middleware(req: NextRequest) {
 
   // rewrites for admin page
   if (subdomain === 'dashboard') {
-    if (!session.access_token || session.user!.role === 'customer') {
+    if (
+      (!session.access_token || session.user!.role === 'customer') &&
+      !hostname.includes('locahost')
+    ) {
       return NextResponse.redirect(BASE_URL);
     }
 

@@ -15,3 +15,13 @@ export type GetProductsParams = {
 export type GetBestSellersParams = {
   categoryId?: number | null;
 };
+
+export interface CreateProductPayload {
+  title: string;
+  price: number;
+  description: string;
+  categoryId: number;
+  images: string[];
+}
+
+export interface UpdateProductPayload extends Partial<CreateProductPayload> {}

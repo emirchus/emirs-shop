@@ -1,16 +1,15 @@
 import { api } from '@/api';
 import { Breadcum } from '@/components/breadcum';
-import { ImageDetail } from '@/components/image-detail';
-import { ProductItem } from '@/components/product-item';
-import { Button } from '@/components/ui/button';
+import { ImageDetail, ProductItem } from '@/components/store';
 import {
+  Button,
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious
-} from '@/components/ui/carousel';
-import { BASE_URL } from '@/lib';
+} from '@/components/ui';
+import { BASE_URL, sleep } from '@/lib';
 import { HeartIcon, Share2Icon, ShoppingCartIcon } from 'lucide-react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -49,6 +48,8 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
 
 export default async function ProductPage({ params: { id } }: Props) {
   const product = await api.products.getOne(+id);
+
+  await sleep(1000);
 
   if (!product) notFound();
 
