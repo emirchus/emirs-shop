@@ -3,7 +3,7 @@
 
 import { api } from '@/api';
 import { UpdateProductPayload } from '@/api/types/products';
-import { ProductRow } from '@/components/dashboard';
+import { ProductRow, UserRow } from '@/components/dashboard';
 import { ProductItem } from '@/components/store/product-item';
 import { useSession } from '@/hooks/use-session';
 import { Product } from '@/interfaces/product';
@@ -11,13 +11,11 @@ import { BASE_URL, getImgurImage } from '@/lib';
 import { revalidatePath } from 'next/cache';
 import React from 'react';
 
-export type FetchProducts = JSX.Element[];
-
 export const fetchProducts = async (
   page: number,
   title?: string | null,
   categoryId?: number | null
-): Promise<FetchProducts> => {
+): Promise<React.ReactNode[]> => {
   const offset = page * 10;
 
   const response = await api.products.getAll({
@@ -36,7 +34,7 @@ export const fetchProductsTable = async (
   page: number,
   title?: string | null,
   categoryId?: number | null
-): Promise<FetchProducts> => {
+): Promise<React.ReactNode[]> => {
   const offset = page * 10;
 
   const response = await api.products.getAll({
@@ -49,6 +47,17 @@ export const fetchProductsTable = async (
   return response.map((product, index) => (
     <ProductRow key={product.id} product={product} index={index} />
   ));
+};
+
+export const fetchUsersTable = async (page: number): Promise<React.ReactNode[]> => {
+  const offset = page * 10;
+
+  const response = await api.user.getAll({
+    offset,
+    limit: 10
+  });
+
+  return response.map((user, index) => <UserRow key={user.id} user={user} index={index} />);
 };
 
 export async function logout() {

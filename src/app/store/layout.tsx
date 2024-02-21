@@ -12,7 +12,8 @@ export const metadata: Metadata = {
         url: 'https://i.imgur.com/aCtfpcm.png'
       }
     ]
-  }
+  },
+  keywords: ['emir store', 'emir', 'emirs store', 'emirs', 'emir ali store', 'la tienda de emir']
 };
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {

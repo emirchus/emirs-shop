@@ -1,13 +1,35 @@
 import { User } from '@/interfaces/user';
 import { BASE_URL } from '@/lib/config';
-import { CreateUserPayload } from '../types/user';
+import { CreateUserPayload, GetUsersParams } from '../types/user';
+import { NextURL } from 'next/dist/server/web/next-url';
 
 export class UserResource {
-  async getAll(): Promise<User[]> {
+  async getAll(
+    params: GetUsersParams = {
+      limit: 10,
+      offset: 0
+    }
+  ): Promise<User[]> {
     try {
-      const response = await fetch(`${BASE_URL}/api/users`);
+      const url = new NextURL(`${BASE_URL}/api/users`);
 
-      return response.json();
+      for (const key in params) {
+        if (Object.prototype.hasOwnProperty.call(params, key)) {
+          const value = (params as never)[key];
+          if (value === null || value === undefined) continue;
+          url.searchParams.append(key, value);
+        }
+      }
+
+      const res = await (
+        await fetch(url, {
+          next: {
+            revalidate: 60
+          }
+        })
+      ).json();
+
+      return res;
     } catch (error) {
       console.error('An error occurred', error);
 

@@ -5,3 +5,4 @@ export * from './sidebar';
 export * from './tooltip-button';
 export * from './topbar';
 export * from './user-menu';
+export * from './users';

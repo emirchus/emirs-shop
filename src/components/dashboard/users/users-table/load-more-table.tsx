@@ -1,34 +1,33 @@
 'use client';
 
-import { fetchProductsTable } from '@/app/action';
+import { fetchUsersTable } from '@/app/action';
 import { Loading } from '@/components/loading';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-export const LoadMoreProduct = () => {
+let page = 0;
+
+export const LoadMoreUsers = () => {
   const { inView, ref } = useInView();
-  const [products, setProducts] = useState<React.ReactNode[]>([]);
+  const [users, setUsers] = useState<React.ReactNode[]>([]);
   const [canLoadMore, setCanLoadMore] = useState(true);
 
-  const [page, setPage] = useState(0);
-
   useEffect(() => {
-    if ((inView || products.length == 0) && canLoadMore) {
-      fetchProductsTable(page).then(res => {
-        setProducts([...products, ...res]);
+    if ((inView || users.length == 0) && canLoadMore) {
+      fetchUsersTable(page).then(res => {
+        setUsers([...users, ...res]);
         if (res.length < 10) {
           setCanLoadMore(false);
-          return;
         }
-        setPage(page + 1);
+        page += 1;
       });
     }
-  }, [canLoadMore, inView, products, page]);
+  }, [canLoadMore, inView, users]);
 
   return (
     <>
-      {products}
+      {users}
       <tr ref={ref}>
         <td colSpan={4} className='text-center'>
           <div ref={ref} />

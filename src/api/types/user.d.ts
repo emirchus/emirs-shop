@@ -7,3 +7,8 @@ export interface CreateUserPayload {
   avatar?: string;
   role: UserRole;
 }
+
+export type GetUsersParams = {
+  offset?: number | null;
+  limit?: number | null;
+}

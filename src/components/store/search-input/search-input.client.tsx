@@ -12,8 +12,8 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export const SearchInput = ({ visible, className, ...props }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
-  const queryParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
+  const queryParams = useSearchParams();
 
   const [search, setSearch] = React.useState(queryParams.get('query') || '');
 
