@@ -28,7 +28,7 @@ export class ProductsResource {
       const res = await (
         await fetch(url, {
           next: {
-            revalidate: 60
+            revalidate: 20
           }
         })
       ).json();
@@ -73,7 +73,11 @@ export class ProductsResource {
   }
   async getOne(id: number): Promise<Product | null> {
     try {
-      const res = await fetch(`${BASE_URL}/api/products/${id}`);
+      const res = await fetch(`${BASE_URL}/api/products/${id}`, {
+        next: {
+          revalidate: 20
+        }
+      });
       const json = await res.json();
       if (json.id) {
         return json;

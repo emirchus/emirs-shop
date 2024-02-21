@@ -42,8 +42,26 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
           height: 600
         }
       ]
-    }
+    },
+    keywords: [
+      product.title,
+      product.description,
+      product.category.name,
+      product.category.id.toString(),
+      'emir store',
+      'emir'
+    ]
   };
+}
+
+export const revalidate = 100;
+
+export async function generateStaticParams() {
+  const products = await api.products.getAll();
+
+  return products.map(product => ({
+    id: product.id.toString()
+  }));
 }
 
 export default async function ProductPage({ params: { id } }: Props) {
