@@ -1,7 +1,7 @@
 'use client';
 
-import { FetchProducts, fetchProducts } from '@/app/action';
-import { Suspense, useEffect, useState } from 'react';
+import { fetchProducts } from '@/app/action';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loading } from '@/components/loading';
@@ -13,7 +13,7 @@ interface Props {
 
 export const ProductsHome = ({ title, category }: Props) => {
   const { inView, ref } = useInView();
-  const [products, setProducts] = useState<FetchProducts>([]);
+  const [products, setProducts] = useState<React.ReactNode[]>([]);
   const [canLoadMore, setCanLoadMore] = useState(true);
   const [page, setPage] = useState(1);
 

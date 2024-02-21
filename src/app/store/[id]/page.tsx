@@ -57,7 +57,7 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
 export const revalidate = 100;
 
 export async function generateStaticParams() {
-  const products = await api.products.getAll();
+  const products = await api.products.getAll({ offset: 0, limit: 10 });
 
   return products.map(product => ({
     id: product.id.toString()
