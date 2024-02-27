@@ -18,16 +18,16 @@
 
 > Tienda y dashboard hecho con Next.js y Tailwind CSS. API por Platzi [REPO](https://github.com)
 
-- <input type="checkbox" checked disabled> Tienda
-- <input type="checkbox" checked disabled> Dashboard
-- <input type="checkbox" disabled> Carrito de compras
-- <input type="checkbox" checked disabled> Checkout
-- <input type="checkbox" disabled> Pago
-- <input type="checkbox" checked disabled> Administración de productos
-- <input type="checkbox" checked disabled> Administración de categorías
-- <input type="checkbox" checked disabled> Administración de usuarios
-- <input type="checkbox" disabled> Administración de pedidos
-- <input type="checkbox" disabled> Administración de envíos
+- [x] Tienda
+- [x] Dashboard
+- [ ] Carrito de compras
+- [ ] Checkout
+- [ ] Pago
+- [x] Administración de productos
+- [x] Administración de categorías
+- [x] Administración de usuarios
+- [ ] Administración de pedidos
+- [ ] Administración de envíos
 
 ## 🚀 Comenzando
 
