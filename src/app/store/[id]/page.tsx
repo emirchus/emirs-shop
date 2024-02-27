@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui';
-import { BASE_URL, sleep } from '@/lib';
+import { BASE_URL } from '@/lib';
 import { HeartIcon, Share2Icon, ShoppingCartIcon } from 'lucide-react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -49,7 +49,9 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
       product.category.name,
       product.category.id.toString(),
       'emir store',
-      'emir'
+      'emir',
+      'https://github.com/emirchus',
+      'https://www.linkedin.com/in/emir-ali-31aa711ab/'
     ]
   };
 }
@@ -66,8 +68,6 @@ export async function generateStaticParams() {
 
 export default async function ProductPage({ params: { id } }: Props) {
   const product = await api.products.getOne(+id);
-
-  await sleep(1000);
 
   if (!product) notFound();
 
@@ -112,17 +112,17 @@ export default async function ProductPage({ params: { id } }: Props) {
           <div className='mb-4 flex flex-row items-center'>
             <div className='flex flex-row items-center justify-evenly rounded-xl bg-muted px-2 py-1'>
               <Button variant={'ghost'}>
-                <HeartIcon size={24} />
+                <HeartIcon size={16} />
                 <span className='ml-2'>Wishlist</span>
               </Button>
               <hr className='mx-2 h-8 w-[2px] rounded-full bg-muted-foreground/20' />
               <Button variant={'ghost'}>
-                <ShoppingCartIcon size={24} />
+                <ShoppingCartIcon size={16} />
                 <span className='ml-2'>Add to cart</span>
               </Button>
             </div>
-            <Button variant={'secondary'} className='ml-4'>
-              <Share2Icon />
+            <Button variant={'secondary'} className='ml-4' size={'icon'}>
+              <Share2Icon size={16} />
             </Button>
           </div>
           <h2 className='text-5xl font-bold text-foreground'>{product.title}</h2>

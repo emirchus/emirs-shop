@@ -3,27 +3,35 @@
 import { fetchUsersTable } from '@/app/action';
 import { Loading } from '@/components/loading';
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-
-let page = 0;
 
 export const LoadMoreUsers = () => {
   const { inView, ref } = useInView();
   const [users, setUsers] = useState<React.ReactNode[]>([]);
   const [canLoadMore, setCanLoadMore] = useState(true);
 
+  const [page, setPage] = useState(0);
   useEffect(() => {
     if ((inView || users.length == 0) && canLoadMore) {
       fetchUsersTable(page).then(res => {
+        if (
+          res.some(user => users.find(u => (u as ReactElement).key === (user as ReactElement).key))
+        ) {
+          setCanLoadMore(false);
+          return;
+        }
+
         setUsers([...users, ...res]);
+
         if (res.length < 10) {
           setCanLoadMore(false);
+          return;
         }
-        page += 1;
+        setPage(page + 1);
       });
     }
-  }, [canLoadMore, inView, users]);
+  }, [canLoadMore, inView, page, users]);
 
   return (
     <>

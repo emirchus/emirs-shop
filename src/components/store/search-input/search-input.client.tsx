@@ -29,7 +29,7 @@ export const SearchInput = ({ visible, className, ...props }: Props) => {
 
   return (
     <div
-      className={cn('relative mr-4 hidden max-w-2xl items-center md:flex', className)}
+      className={cn('relative max-w-2xl items-center flex', className)}
       {...props}
     >
       <MagnifyingGlassIcon

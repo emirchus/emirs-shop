@@ -6,6 +6,7 @@ import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-reac
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import useMediaQuery from '@/hooks/use-media-query';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -180,6 +181,10 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
   ({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
+    const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+    if (!isDesktop) return null;
+
     return (
       <Button
         ref={ref}
@@ -207,6 +212,9 @@ CarouselPrevious.displayName = 'CarouselPrevious';
 const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
   ({ className, variant = 'outline', size = 'icon', ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
+    const isDesktop = useMediaQuery('(min-width: 1024px)');
+
+    if (!isDesktop) return null;
 
     return (
       <Button

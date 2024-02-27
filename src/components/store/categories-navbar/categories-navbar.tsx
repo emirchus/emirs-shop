@@ -7,7 +7,7 @@ export const CategoriesNavbar = async () => {
   const categories = (await api.categories.getAll()).slice(0, 8);
 
   return (
-    <NavigationMenu className='mx-auto hidden lg:block'>
+    <NavigationMenu className='mx-auto'>
       <NavigationMenuList>
         {categories.map(category => (
           <CategoryNavbar key={category.id} category={category} />

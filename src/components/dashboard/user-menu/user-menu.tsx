@@ -9,13 +9,12 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { User } from '@/interfaces/user';
 import Image from 'next/image';
 import { ExternalLink, LogOutIcon, Settings, Store, UserIcon } from 'lucide-react';
 import { logout } from '@/app/action';
 import Link from 'next/link';
-import { BASE_URL } from '@/lib';
+import { BASE_URL, cn } from '@/lib';
 import {
   Select,
   SelectContent,
@@ -25,18 +24,27 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import { useTheme } from 'next-themes';
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface Props {
   user: User;
+  expanded: boolean;
 }
 
-export const UserMenu = ({ user }: Props) => {
+export const UserMenu = ({ user, expanded }: Props) => {
   const { setTheme, theme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={'outline'} className='rounded-full p-0 shadow-md '>
+        <motion.a
+          className={cn(
+            'flex w-full cursor-pointer flex-row items-center justify-evenly p-2 text-primary-foreground shadow-md transition-all duration-300 ease-in-out',
+            {
+              'rounded-md bg-primary ': expanded
+            }
+          )}
+        >
           <Image
             src={user.avatar}
             alt={user.name}
@@ -44,7 +52,20 @@ export const UserMenu = ({ user }: Props) => {
             height={40}
             className='rounded-full'
           />
-        </Button>
+          <AnimatePresence >
+            {expanded && (
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, display: 'none'}}
+                transition={{ duration: 0.2 }}
+                className='ml-2'
+              >
+                {user.name}
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </motion.a>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='mr-4 w-56' side='right' align='end' sideOffset={10}>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

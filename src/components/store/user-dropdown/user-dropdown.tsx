@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import React from 'react';
-import { Button } from '@/components/ui/button';
 import { User } from '@/interfaces/user';
 import Image from 'next/image';
 import {
@@ -51,7 +50,7 @@ export const UserDropdown = ({ user }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={'outline'} className='rounded-full p-0 shadow-md '>
+        <a className='rounded-full p-0 shadow-md cursor-pointer'>
           <Image
             src={user.avatar}
             alt={user.name}
@@ -59,7 +58,7 @@ export const UserDropdown = ({ user }: Props) => {
             height={40}
             className='rounded-full'
           />
-        </Button>
+        </a>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='mr-4 w-56'>
         <DropdownMenuLabel>My Account</DropdownMenuLabel>

@@ -42,7 +42,7 @@ export const Topbar = async () => {
   const [text, date, icon] = getDateString();
 
   return (
-    <div className='sticky top-0 hidden h-[90px]  scroll-m-0 flex-row items-center justify-between border-b-2 bg-background p-5  md:flex z-10 '>
+    <div className='z-10  h-[90px] scroll-m-0 flex-row items-center justify-between border-b-2 bg-background  p-5 md:flex '>
       <div className='my-auto flex flex-col items-start justify-start'>
         <h1 className='flex flex-row items-center text-2xl font-semibold'>
           {`${text}, ${session.user!.name}`} <span className='ml-2'>{icon}</span>

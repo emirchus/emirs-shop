@@ -24,7 +24,7 @@ export class UserResource {
       const res = await (
         await fetch(url, {
           next: {
-            revalidate: 60
+            revalidate: 20
           }
         })
       ).json();
