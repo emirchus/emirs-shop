@@ -1,3 +1,4 @@
+<img style="width: 176px; margin: auto" src="./public/logo.svg"/>
 <h1 align="center">Emirs Shop</h1>
 
 ### Deploy [Vercel](https://emirs-shop.vercel.app/)

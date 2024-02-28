@@ -1,3 +1,4 @@
+'use server';
 import Image from 'next/image';
 import React, { Suspense } from 'react';
 import Link from 'next/link';

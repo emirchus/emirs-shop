@@ -40,7 +40,7 @@ export const ProductItem = ({ product, index }: Props) => {
           delay: 0.1 * index
         }}
         viewport={{ amount: 0 }}
-        className='group relative flex max-w-[300px] transform flex-col items-start justify-start space-y-2 rounded-lg border-2 border-border/90 bg-card/90 p-4 shadow-md transition-transform duration-300 ease-in-out h-full '
+        className='group relative flex h-full max-w-[300px] transform flex-col items-start justify-start space-y-2 rounded-lg '
       >
         <div
           className='h-60 w-full overflow-hidden rounded-lg shadow-xl'
@@ -79,5 +79,38 @@ export const ProductItem = ({ product, index }: Props) => {
         </div>
       </motion.div>
     </Link>
+  );
+};
+
+export const ProductItemSkeleton = ({ index }: { index: number }) => {
+  const variants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 }
+  };
+  return (
+    <motion.div
+      variants={variants}
+      initial='hidden'
+      animate='visible'
+      transition={{
+        duration: 0.5,
+        ease: 'easeInOut',
+        delay: 0.1 * index
+      }}
+      viewport={{ amount: 0 }}
+      className='group relative flex h-full max-w-[300px] transform flex-col items-start justify-start space-y-2 rounded-lg p-4 transition-transform duration-300 ease-in-out '
+    >
+      <div className='h-60 w-full overflow-hidden rounded-lg shadow-xl'>
+        <Skeleton className='h-60 w-full ' />
+      </div>
+      <div className='flex flex-col items-start justify-between p-4 w-full'>
+        <div className='flex flex-row items-start justify-between space-x-4 w-full'>
+          <Skeleton className='h-5 w-full' />
+          <Skeleton className='h-5 w-8' />
+        </div>
+        <div className='flex flex-1'></div>
+        <Skeleton className='h-5 w-1/2 mt-8' />
+      </div>
+    </motion.div>
   );
 };

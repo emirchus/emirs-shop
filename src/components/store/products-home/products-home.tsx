@@ -5,6 +5,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loading } from '@/components/loading';
+import { ProductItemSkeleton } from '..';
 
 interface Props {
   title?: string | null;
@@ -15,11 +16,14 @@ export const ProductsHome = ({ title, category }: Props) => {
   const { inView, ref } = useInView();
   const [products, setProducts] = useState<React.ReactNode[]>([]);
   const [canLoadMore, setCanLoadMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     if ((inView || products.length == 0) && canLoadMore) {
+      setIsLoading(true);
       fetchProducts(page === 1 ? 0 : page, title as string, category).then(res => {
+        setIsLoading(false);
         setProducts([...products, ...res]);
         if (res.length < 10) {
           setCanLoadMore(false);
@@ -35,6 +39,8 @@ export const ProductsHome = ({ title, category }: Props) => {
       <Suspense>
         <div className='mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
           {products}
+          {isLoading &&
+            Array.from({ length: 10 }).map((_, i) => <ProductItemSkeleton key={i} index={i} />)}
         </div>
       </Suspense>
       <div ref={ref} />
